@@ -15,26 +15,24 @@ public class StraxPage {
     public WebElement list;
     @FindBy(xpath = "//a//img [contains(@src,'banner-zashita-traveler')]")
     public WebElement sendButtom;
-    @FindBy(xpath = "//*[@id=\"SBRF_TabContainer_sb_bundle-47610460\"]/div/div[1]/div/div[1]/div/div/div/div/div/p/a/img")
-    public WebElement promo;
-    @FindBy(xpath = "//h3 [text()='Выберите сумму страховой защиты']/parent::section")
-    public WebElement straxSum;
+
+
     @FindBy(xpath = "//span [contains(text(),'Оформить')]")
     public WebElement batton;
     public StraxPage(WebDriver driver){
         PageFactory.initElements(driver, this);
         Wait<WebDriver> wait = new WebDriverWait(driver,10, 1000);
-        wait.until(ExpectedConditions.visibilityOf(list)).click();
-        wait.until(ExpectedConditions.visibilityOf(sendButtom)).click();
-        wait.until(ExpectedConditions.visibilityOf(promo)).click();
-        wait.until(ExpectedConditions.visibilityOf(straxSum)).click();
-        JavascriptExecutor js =(JavascriptExecutor)driver;
-        js.executeScript("arguments[0].scrollIntoView(true);",straxSum);
-        wait.until(ExpectedConditions.visibilityOf(batton)).click();
+//        wait.until(ExpectedConditions.visibilityOf(list)).click();
+//        wait.until(ExpectedConditions.visibilityOf(sendButtom)).click();
+//
+
+//        for (String handle : driver.getWindowHandles()) { //Переключение экрана
+//            driver.switchTo().window(handle);
+//        }
+
+//        wait.until(ExpectedConditions.visibilityOf(batton)).click();
     }
-    public void selectSum(String menuItem){
-        straxSum.findElement(By.xpath(".//div[text()='"+ menuItem +"']")).click();
-    }
+
     public void selectIssueButton(){
         batton.click();
     }

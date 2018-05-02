@@ -9,10 +9,10 @@ import org.openqa.selenium.support.PageFactory;
 public class MainPage {
 
     @FindBy(xpath="//*[@id=\"main\"]/div/div/table/tbody/tr/td/div/div/div/div/div/div[1]/div[1]/div[4]/div")
-WebElement mainMenu;
+    WebElement mainMenu;
 
     @FindBy(xpath="//*[@id=\"main\"]/div/div/table/tbody/tr/td/div/div/div/div/div/div[1]/div[1]/div[4]/div/div/div/ul/li[5]/a")
-WebElement subMenu;
+    WebElement subMenu;
 
     public MainPage(WebDriver driver){
         PageFactory.initElements(driver, this);

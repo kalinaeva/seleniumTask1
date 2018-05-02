@@ -1,3 +1,4 @@
+import org.junit.Ignore;
 import org.junit.Test;
 import pages.MainPage;
 import pages.SendAppPage;
@@ -8,22 +9,17 @@ import steps.BaseSteps;
 public class MyRefTest extends BaseSteps {
 
     @Test
-    public void newFirstTest(){
+//    @Ignore
+    public void newFirstTest() {
         driver.get(baseUrl);
         MainPage mainPage = new MainPage(driver);
         mainPage.selectMainMenu("Страхование");
         mainPage.selectSubMenu("Путешествиники");
-        new StraxPage(driver).list.click();
-        new StraxPage(driver).sendButtom.click();
-        new StraxPage(driver).promo.click();
-        new StraxPage(driver).straxSum.click();
-        new StraxPage(driver).batton.click();
+        new StraxPage(driver);
 
+        SendAppPage fullFillPage = new SendAppPage(driver);
+        fullFillPage.fillField("ФамилияСтрахуемого", "Иванов");
+        fullFillPage.fillField("ИмяСтрахуемого", "Илья");
 
-
-        SendAppPage sendAppPage = new SendAppPage(driver);
-        sendAppPage.fillField("Фамилия", "Иванов");
-        sendAppPage.fillField("Имя", "Иван");
-      }
-
+    }
 }

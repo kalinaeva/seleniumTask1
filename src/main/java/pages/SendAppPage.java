@@ -1,4 +1,5 @@
 package pages;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -10,13 +11,14 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class SendAppPage {
     @FindBy(xpath = "//span [contains(text(),'Оформление')]" )
     public WebElement zayavka;
-    @FindBy(name = "insured0_surname")
+    @FindBy(xpath = "//*[@id=\"views\"]/section/form/section/section[1]/div/insured-input/div/fieldset[2]/div/input")
     public WebElement insured0surname;
-    @FindBy(name = "insured0_name")
+    @FindBy(xpath = "//*[@id=\"views\"]/section/form/section/section[1]/div/insured-input/div/fieldset[3]/div/input")
     public WebElement insured0name;
     @FindBy(name = "insured0_birthDate")
     public WebElement insured0birthdate;
-    @FindBy(name = "surname")
+//    @FindBy(name = "surname")
+    @FindBy(xpath = "//*[@id=\"views\"]/section/form/section/section[2]/div/fieldset[3]/div/input")
     public WebElement surname;
     @FindBy(name = "name")
     public WebElement name;
@@ -44,17 +46,16 @@ public class SendAppPage {
     public SendAppPage(WebDriver driver){
         PageFactory.initElements(driver, this);
         Wait<WebDriver> wait = new WebDriverWait(driver,10, 1000);
-        wait.until(ExpectedConditions.visibilityOf(zayavka));
-        wait.until(ExpectedConditions.visibilityOf(sendButtom));
     }
 
-    public void fillField(String fildName, String value){
-        switch (fildName){
+    public void fillField(String fieldName, String value){
+        switch (fieldName){
             case "ФамилияСтрахуемого": fullFillRefactor(insured0surname, value);
                 break;
             case "ИмяСтрахуемого": fullFillRefactor(insured0name, value);
                 break;
-            case "ДатаРожденияСтрахуемого": fullFillRefactor(insured0birthdate, value);
+            case "ДатаРожденияСтрахуемого":
+                fullFillRefactor(insured0birthdate, value);
                 break;
             case "Фамилия": fullFillRefactor(surname, value);
                 break;
@@ -74,9 +75,10 @@ public class SendAppPage {
                 break;
             case "ПаспортГдеВыдан": fullFillRefactor(issueplace, value);
                 break;
-            default: throw new AssertionError("Поле '" + fildName + "' не объявлено на странице");
+            default: throw new AssertionError("Поле '" + fieldName + "' не объявлено на странице");
         }
     }
+
 
     protected void fullFillRefactor(WebElement element, String value)
     {
